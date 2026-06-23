@@ -17,8 +17,8 @@ const GALLERY = [
   },
   {
     src: "/images/gallery-3.webp",
-    title: "Emerald Signature",
-    note: "Rectangular emerald dial, diamond bezel",
+    title: "The Sovereign Bangle",
+    note: "Gold, Colombian emerald, pavé diamonds",
     span: "",
   },
 ];

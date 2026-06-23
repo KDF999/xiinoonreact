@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowDown, Diamond } from "lucide-react";
 
 export function Hero() {
@@ -21,19 +22,23 @@ export function Hero() {
       id="top"
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden vignette"
     >
-      {/* Background image with parallax + Ken Burns */}
+      {/* Cinematic video background with parallax */}
       <div
         className="absolute inset-0"
         style={{ transform: `translateY(${parallax}px)` }}
       >
-        <div
-          className="absolute inset-0 kenburns bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/images/hero.webp')",
-            filter: "brightness(0.5) contrast(1.05)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080704]/85 via-[#080704]/30 to-[#080704]" />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/hero.webp"
+        >
+          <source src="/cinematic.mp4" type="video/mp4" />
+        </video>
+        {/* gradient veils for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080704]/85 via-[#080704]/35 to-[#080704]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#080704]/80 via-transparent to-[#080704]/60" />
       </div>
 
@@ -72,45 +77,40 @@ export function Hero() {
         className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center"
         style={{ opacity: fade }}
       >
-        {/* Eyebrow */}
         <div className="flex items-center gap-3 text-[10px] sm:text-[11px] uppercase tracking-[0.5em] text-[#c8b98a] hero-fade" style={{ animationDelay: "0.1s" }}>
           <span className="h-px w-8 bg-[#c9a84c]/60" />
           Make with India · For the World
           <span className="h-px w-8 bg-[#c9a84c]/60" />
         </div>
 
-        {/* Headline */}
         <h1 className="mt-7 font-serif-display text-[19vw] leading-[0.9] sm:text-[15vw] lg:text-[12rem] hero-fade" style={{ animationDelay: "0.25s" }}>
           <span className="text-gold-gradient italic">XII</span>{" "}
           <span className="text-[#f0e8d5]">NOON</span>
         </h1>
 
-        {/* Subhead */}
         <p className="mt-4 max-w-xl text-sm sm:text-base font-light tracking-[0.18em] text-[#c8b98a] hero-fade" style={{ animationDelay: "0.5s" }}>
           Ultra-Luxury Timekeeping · Since the Beginning of Time
         </p>
 
-        {/* Quote */}
         <p className="mt-10 max-w-2xl font-serif-display text-xl sm:text-2xl lg:text-3xl italic leading-relaxed text-[#f0e8d5]/90 hero-fade" style={{ animationDelay: "0.75s" }}>
           &ldquo;Not a response to the world of luxury —<br className="hidden sm:block" />{" "}
           India&rsquo;s assertion within it.&rdquo;
         </p>
 
-        {/* CTAs */}
         <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:gap-5 hero-fade" style={{ animationDelay: "1s" }}>
-          <a
-            href="#collection"
+          <Link
+            href="/tricolor"
             className="group relative inline-flex items-center justify-center overflow-hidden border border-[#c9a84c] px-9 py-3.5 text-[11px] uppercase tracking-[0.34em] text-[#e8c97a] transition-colors duration-500 hover:text-[#080704]"
           >
             <span className="absolute inset-0 -z-0 translate-y-full bg-[#c9a84c] transition-transform duration-500 group-hover:translate-y-0" />
             <span className="relative z-10">View Collection</span>
-          </a>
-          <a
-            href="#enquiry"
+          </Link>
+          <Link
+            href="/private-enquiry"
             className="inline-flex items-center justify-center border border-[rgba(201,168,76,0.3)] px-9 py-3.5 text-[11px] uppercase tracking-[0.34em] text-[#c8b98a] transition-all duration-500 hover:border-[#c9a84c] hover:text-[#e8c97a]"
           >
             Private Enquiry
-          </a>
+          </Link>
         </div>
       </div>
 
