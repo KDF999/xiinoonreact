@@ -108,29 +108,29 @@ export const PRODUCTS: Product[] = [
     category: "The Watch",
     tag: "Feminine",
     blurb:
-      "Crafted for the woman who defines her own legacy. Emerald-cut diamonds, Colombian emerald inlay, sculpted feminine silhouette.",
+      "Crafted for the woman who defines her own legacy. A teardrop Colombian emerald encircled by pavé diamonds, set in hand-worked gold.",
     image: "/images/signature.webp",
     accent: "#9fb88a",
     details: {
       movement: "High-precision quartz, jeweled",
-      caseMaterial: "18K Rose Gold, sculpted, 34mm",
-      dial: "Colombian emerald inlay, mother-of-pearl",
-      stones: "Emerald-cut diamonds, Colombian emerald",
+      caseMaterial: "18K Gold, hand-worked, sculpted",
+      dial: "Teardrop Colombian emerald centrepiece",
+      stones: "Pavé diamonds, Colombian emerald",
       edition: "Extended by invitation",
       origin: "Conceived & crafted in Bharat",
     },
     longDescription:
-      "The Signature is not a smaller version of a man's watch. It is conceived from the first sketch for the woman whose legacy is her own design. A sculpted rose-gold silhouette cradles a dial of Colombian emerald and mother-of-pearl, ringed by emerald-cut diamonds. Feminine, without apology; sovereign, without question.",
+      "The Signature is not a smaller version of a man's object. It is conceived from the first sketch for the woman whose legacy is her own design. A teardrop Colombian emerald holds the centre, encircled by a continuous field of pavé diamonds set in hand-worked gold — feminine without diminution, sovereign without compromise.",
     heritage:
-      "The Signature answers a question the maison posed to itself: what does a timepiece become when it is conceived, from the first line, for the woman who defines her own legacy? The answer is a sculpted silhouette in rose gold, a dial of Colombian emerald and mother-of-pearl, and a bezel of emerald-cut diamonds — feminine without diminution, sovereign without compromise.",
+      "The Signature answers a question the maison posed to itself: what does an object become when it is conceived, from the first line, for the woman who defines her own legacy? The answer is a sculpted form in hand-worked gold, a teardrop Colombian emerald at its heart, and a halo of pavé diamonds — feminine without diminution, sovereign without compromise.",
     highlights: [
       {
-        title: "Sculpted Silhouette",
-        body: "A 34mm rose-gold case drawn for the feminine wrist — never a reduced men's design.",
+        title: "Teardrop Emerald",
+        body: "A Colombian emerald cut to a teardrop, set as the centrepiece — never a reduced men's design.",
       },
       {
-        title: "Colombian Emerald",
-        body: "A dial of emerald inlay and mother-of-pearl, ringed by emerald-cut diamonds.",
+        title: "Pavé Diamond Halo",
+        body: "A continuous field of pavé diamonds encircles the emerald in hand-worked gold.",
       },
       {
         title: "By Invitation",

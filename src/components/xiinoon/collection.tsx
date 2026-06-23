@@ -70,19 +70,19 @@ const PRODUCTS: Product[] = [
     category: "The Watch",
     tag: "Feminine",
     blurb:
-      "Crafted for the woman who defines her own legacy. Emerald-cut diamonds, Colombian emerald inlay, sculpted feminine silhouette.",
+      "Crafted for the woman who defines her own legacy. A teardrop Colombian emerald encircled by pavé diamonds, set in hand-worked gold.",
     image: "/images/signature.webp",
     accent: "#9fb88a",
     details: {
       movement: "High-precision quartz, jeweled",
-      caseMaterial: "18K rose gold, sculpted, 34mm",
-      dial: "Colombian emerald inlay, mother-of-pearl",
-      stones: "Emerald-cut diamonds, Colombian emerald",
+      caseMaterial: "18K Gold, hand-worked, sculpted",
+      dial: "Teardrop Colombian emerald centrepiece",
+      stones: "Pavé diamonds, Colombian emerald",
       edition: "Extended by invitation",
       origin: "Conceived & crafted in Bharat",
     },
     longDescription:
-      "The Signature is not a smaller version of a man's watch. It is conceived from the first sketch for the woman whose legacy is her own design. A sculpted rose-gold silhouette cradles a dial of Colombian emerald and mother-of-pearl, ringed by emerald-cut diamonds. Feminine, without apology; sovereign, without question.",
+      "The Signature is not a smaller version of a man's object. It is conceived from the first sketch for the woman whose legacy is her own design. A teardrop Colombian emerald holds the centre, encircled by a continuous field of pavé diamonds set in hand-worked gold — feminine without diminution, sovereign without compromise.",
   },
   {
     id: "vajra",

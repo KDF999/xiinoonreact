@@ -33,10 +33,7 @@ export function Navbar() {
     };
   }, [open]);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  // Mobile menu is closed via onClick on each link — no effect needed.
 
   return (
     <>

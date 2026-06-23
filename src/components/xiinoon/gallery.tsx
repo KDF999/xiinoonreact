@@ -5,8 +5,8 @@ import { Reveal } from "./reveal";
 const GALLERY = [
   {
     src: "/images/gallery-2.webp",
-    title: "The Sovereign Bangle",
-    note: "Gold, Colombian emerald, diamonds",
+    title: "Emerald Dial Study",
+    note: "Gold, green gemstone, pavé diamonds",
     span: "md:col-span-2 md:row-span-2",
   },
   {
