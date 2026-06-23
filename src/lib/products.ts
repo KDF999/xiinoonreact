@@ -108,29 +108,29 @@ export const PRODUCTS: Product[] = [
     category: "The Watch",
     tag: "Feminine",
     blurb:
-      "Crafted for the woman who defines her own legacy. A rectangular emerald dial, diamond bezel, and a sculpted feminine silhouette in gold.",
+      "Crafted for the woman who defines her own legacy. An oval emerald dial, pavé diamond bezel, and a sculpted gold bracelet.",
     image: "/images/signature.webp",
     accent: "#9fb88a",
     details: {
       movement: "High-precision quartz, jeweled",
-      caseMaterial: "18K Gold, sculpted, rectangular",
-      dial: "Colombian emerald face, mother-of-pearl undertone",
-      stones: "Diamond bezel, Colombian emerald",
+      caseMaterial: "18K Gold, sculpted bracelet, oval",
+      dial: "Colombian emerald face, pavé-set",
+      stones: "Pavé diamond bezel, Colombian emerald",
       edition: "Extended by invitation",
       origin: "Conceived & crafted in Bharat",
     },
     longDescription:
-      "The Signature is not a smaller version of a man's watch. It is conceived from the first sketch for the woman whose legacy is her own design. A rectangular emerald dial sits within a sculpted gold case, ringed by a bezel of brilliant-cut diamonds — feminine without diminution, sovereign without compromise.",
+      "The Signature is not a smaller version of a man's watch. It is conceived from the first sketch for the woman whose legacy is her own design. An oval emerald dial sits within a sculpted gold case, framed by a pavé diamond bezel and finished with a hand-worked gold bracelet — feminine without diminution, sovereign without compromise.",
     heritage:
-      "The Signature answers a question the maison posed to itself: what does a timepiece become when it is conceived, from the first line, for the woman who defines her own legacy? The answer is a sculpted rectangular silhouette in gold, a dial of Colombian emerald, and a bezel of brilliant-cut diamonds — feminine without diminution, sovereign without compromise.",
+      "The Signature answers a question the maison posed to itself: what does a timepiece become when it is conceived, from the first line, for the woman who defines her own legacy? The answer is a sculpted oval silhouette in gold, a dial of Colombian emerald, and a pavé diamond bezel — feminine without diminution, sovereign without compromise.",
     highlights: [
       {
-        title: "Rectangular Silhouette",
-        body: "A sculpted gold case drawn for the feminine wrist — never a reduced men's design.",
+        title: "Sculpted Bracelet",
+        body: "A hand-worked gold bracelet drawn for the feminine wrist — never a reduced men's design.",
       },
       {
-        title: "Colombian Emerald Dial",
-        body: "A rectangular emerald face with a mother-of-pearl undertone, framed by a diamond bezel.",
+        title: "Oval Emerald Dial",
+        body: "An oval Colombian emerald face, pavé-set and framed by a continuous diamond bezel.",
       },
       {
         title: "By Invitation",

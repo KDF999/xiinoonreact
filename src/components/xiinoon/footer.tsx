@@ -1,26 +1,39 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Loader2, Check, ArrowUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const COLS = [
+type FooterLink = { label: string; href: string };
+
+const COLS: { title: string; links: FooterLink[] }[] = [
   {
     title: "Collection",
     links: [
-      "The Tricolor Edition",
-      "The Emirati Edition",
-      "The Signature",
-      "The Vajra Pen",
+      { label: "The Tricolor Edition", href: "/tricolor" },
+      { label: "The Emirati Edition", href: "/emirati-edition" },
+      { label: "The Signature", href: "/signature" },
+      { label: "The Vajra Pen", href: "/vajra-pen" },
     ],
   },
   {
     title: "Maison",
-    links: ["Brand Story", "The Craft", "Standards", "Media"],
+    links: [
+      { label: "Brand Story", href: "/brand-story" },
+      { label: "Media", href: "/media" },
+      { label: "The Collection", href: "/#collection" },
+      { label: "Philosophy", href: "/#philosophy" },
+    ],
   },
   {
     title: "Private",
-    links: ["Private Enquiry", "By Appointment", "Press", "Contact"],
+    links: [
+      { label: "Private Enquiry", href: "/private-enquiry" },
+      { label: "Home", href: "/" },
+      { label: "By Appointment", href: "/private-enquiry" },
+      { label: "Contact", href: "mailto:ceo@xiinoon.in" },
+    ],
   },
 ];
 
@@ -60,7 +73,6 @@ export function Footer() {
 
   return (
     <footer className="relative mt-auto border-t border-[rgba(201,168,76,0.18)] bg-[#060502]">
-      {/* top statement band */}
       <div className="border-b border-[rgba(201,168,76,0.1)] py-14 text-center">
         <p className="font-serif-display text-2xl sm:text-3xl italic text-[#f0e8d5]/90">
           XII NOON does not follow time.
@@ -72,9 +84,8 @@ export function Footer() {
 
       <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
-          {/* Brand + newsletter */}
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
               <img
                 src="/images/logo.webp"
                 alt="XII NOON"
@@ -88,13 +99,12 @@ export function Footer() {
                   Ultra-Luxury Timekeeping
                 </p>
               </div>
-            </div>
+            </Link>
             <p className="mt-6 max-w-sm text-sm font-light leading-relaxed text-[#c8b98a]">
               Make with India for the World. Timekeeping as Position.
               Timekeeping as Legacy.
             </p>
 
-            {/* Newsletter */}
             <div className="mt-8">
               <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a84c]">
                 Private Communications
@@ -130,7 +140,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
             {COLS.map((col) => (
               <div key={col.title}>
@@ -139,13 +148,22 @@ export function Footer() {
                 </p>
                 <ul className="mt-5 space-y-3">
                   {col.links.map((l) => (
-                    <li key={l}>
-                      <a
-                        href="#collection"
-                        className="gold-underline text-sm font-light text-[#c8b98a] transition-colors hover:text-[#f0e8d5]"
-                      >
-                        {l}
-                      </a>
+                    <li key={l.label}>
+                      {l.href.startsWith("mailto:") || l.href.startsWith("#") ? (
+                        <a
+                          href={l.href}
+                          className="gold-underline text-sm font-light text-[#c8b98a] transition-colors hover:text-[#f0e8d5]"
+                        >
+                          {l.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={l.href}
+                          className="gold-underline text-sm font-light text-[#c8b98a] transition-colors hover:text-[#f0e8d5]"
+                        >
+                          {l.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -154,18 +172,17 @@ export function Footer() {
           </div>
         </div>
 
-        {/* bottom bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-[rgba(201,168,76,0.12)] pt-8 sm:flex-row">
           <p className="text-[10px] tracking-[0.2em] text-[#c8b98a]/60">
             © {new Date().getFullYear()} XII NOON. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
-            <a
-              href="#top"
+            <Link
+              href="/"
               className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#c8b98a] transition-colors hover:text-[#e8c97a]"
             >
               <ArrowUp className="h-3.5 w-3.5" /> Back to top
-            </a>
+            </Link>
             <a
               href="mailto:ceo@xiinoon.in"
               className="text-[10px] uppercase tracking-[0.3em] text-[#c8b98a] transition-colors hover:text-[#e8c97a]"

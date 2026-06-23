@@ -17,7 +17,7 @@ const GALLERY = [
   },
   {
     src: "/images/gallery-3.webp",
-    title: "The Sovereign Bangle",
+    title: "Emerald & Gold Study",
     note: "Gold, Colombian emerald, pavé diamonds",
     span: "",
   },

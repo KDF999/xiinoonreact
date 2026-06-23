@@ -70,19 +70,19 @@ const PRODUCTS: Product[] = [
     category: "The Watch",
     tag: "Feminine",
     blurb:
-      "Crafted for the woman who defines her own legacy. A rectangular emerald dial, diamond bezel, and a sculpted feminine silhouette in gold.",
+      "Crafted for the woman who defines her own legacy. An oval emerald dial, pavé diamond bezel, and a sculpted gold bracelet.",
     image: "/images/signature.webp",
     accent: "#9fb88a",
     details: {
       movement: "High-precision quartz, jeweled",
-      caseMaterial: "18K Gold, sculpted, rectangular",
-      dial: "Colombian emerald face, mother-of-pearl undertone",
-      stones: "Diamond bezel, Colombian emerald",
+      caseMaterial: "18K Gold, sculpted bracelet, oval",
+      dial: "Colombian emerald face, pavé-set",
+      stones: "Pavé diamond bezel, Colombian emerald",
       edition: "Extended by invitation",
       origin: "Conceived & crafted in Bharat",
     },
     longDescription:
-      "The Signature is not a smaller version of a man's watch. It is conceived from the first sketch for the woman whose legacy is her own design. A rectangular emerald dial sits within a sculpted gold case, ringed by a bezel of brilliant-cut diamonds — feminine without diminution, sovereign without compromise.",
+      "The Signature is not a smaller version of a man's watch. It is conceived from the first sketch for the woman whose legacy is her own design. An oval emerald dial sits within a sculpted gold case, framed by a pavé diamond bezel and finished with a hand-worked gold bracelet — feminine without diminution, sovereign without compromise.",
   },
   {
     id: "vajra",
@@ -238,7 +238,7 @@ function ProductDialog({
               </div>
 
               <a
-                href="#enquiry"
+                href="/private-enquiry"
                 onClick={onClose}
                 className="mt-8 inline-flex w-full items-center justify-center border border-[#c9a84c] px-7 py-3.5 text-[11px] uppercase tracking-[0.32em] text-[#e8c97a] transition-colors duration-500 hover:bg-[#c9a84c] hover:text-[#080704] sm:w-auto"
               >

@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>XII NOON — Ultra-Luxury Timekeeping</title>
+<meta name="description" content="XII NOON — India's assertion within the world of luxury. Ultra-luxury timekeeping and writing instruments, conceived as heirlooms.">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════
+   XII NOON — ENHANCED CINEMATIC STYLESHEET
+   ═══════════════════════════════════════════ */
+:root {
+  --black: #060503;
+  --deep: #0a0906;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim: rgba(201,168,76,0.45);
+  --cream: #f0e8d5;
+  --cream-dk: #c8b98a;
+  --white: #faf8f3;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scrollbar-width: none;
+  scroll-behavior: auto;
+}
+html::-webkit-scrollbar { display: none; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── LOADING SCREEN ── */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.8s;
+}
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#loader .loader-logo {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0;
+  animation: loaderFadeIn 1.2s 0.3s ease forwards;
+}
+#loader .loader-bar {
+  width: 120px;
+  height: 1px;
+  background: rgba(201,168,76,0.15);
+  margin-top: 32px;
+  position: relative;
+  overflow: hidden;
+}
+#loader .loader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: loaderBar 2.2s 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+#loader .loader-tag {
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.35);
+  margin-top: 20px;
+  opacity: 0;
+  animation: loaderFadeIn 1s 1s ease forwards;
+}
+@keyframes loaderFadeIn {
+  to { opacity: 1; }
+}
+@keyframes loaderBar {
+  to { width: 100%; }
+}
+
+/* ── ANIMATED FILM GRAIN ── */
+#grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+}
+#grain canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cur {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: width 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.3s;
+  box-shadow: 0 0 8px rgba(201,168,76,0.6), 0 0 20px rgba(201,168,76,0.2);
+}
+#cur-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  opacity: 0.35;
+  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.35s,
+              border-color 0.35s;
+}
+#cur-trail {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: rgba(201,168,76,0.15);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99996;
+  transform: translate(-50%, -50%);
+}
+
+/* ── GOLD PARTICLE CANVAS ── */
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.6;
+}
+
+/* ── NAVIGATION ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 8000;
+  padding: 28px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              padding 0.4s,
+              border-color 0.6s,
+              backdrop-filter 0.6s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(6,5,3,0.94);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  padding: 16px 56px;
+  border-bottom-color: rgba(201,168,76,0.1);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+}
+.nav-logo img {
+  height: 28px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+.nav-logo:hover img { opacity: 1; }
+.nav-logo-text {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-dk);
+  text-decoration: none;
+  transition: color 0.4s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 10px 24px;
+  transition: background 0.4s, color 0.4s, border-color 0.4s, box-shadow 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+}
+.nav-cta:hover::before { transform: scaleX(1); }
+.nav-cta:hover { color: var(--black); border-color: var(--gold); box-shadow: 0 0 20px rgba(201,168,76,0.15); }
+
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .nav-logo-text { display: none; }
+}
+
+/* ═══════════════════════════════════════════
+   CINEMATIC HERO SECTION
+   ═══════════════════════════════════════════ */
+.hero-cinematic {
+  position: relative;
+  height: 500vh;
+}
+.hero-cinematic .sticky-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--black);
+}
+
+/* Hero Image with Ken Burns */
+.hero-image-container {
+  position: absolute;
+  inset: -40px;
+  overflow: hidden;
+}
+.hero-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.05) contrast(1.02) brightness(0.85);
+  will-change: transform, filter;
+  transform: scale(1);
+}
+
+/* Multi-layer vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 50%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.65) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.15) 20%,
+      rgba(0,0,0,0.08) 45%,
+      rgba(0,0,0,0.08) 55%,
+      rgba(0,0,0,0.15) 80%,
+      rgba(0,0,0,0.95) 100%
+    );
+  z-index: 3;
+}
+
+/* Horizontal light streak */
+.light-streak {
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), rgba(255,255,255,0.15), rgba(201,168,76,0.3), transparent);
+  transform: translateY(-50%);
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(1px);
+  box-shadow: 0 0 40px 10px rgba(201,168,76,0.06);
+}
+
+/* Overlay text */
+.overlay-copy {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  text-align: center;
+}
+
+/* Reveal lines */
+.reveal-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 88vw;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.reveal-line.headline {
+  top: 50%;
+  font-family: var(--serif);
+  font-size: clamp(42px, 7.5vw, 110px);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  text-shadow:
+    0 2px 10px rgba(0,0,0,0.95),
+    0 6px 30px rgba(0,0,0,0.9),
+    0 16px 60px rgba(0,0,0,0.75);
+  transform: translateX(-50%) translateY(-50%);
+}
+.reveal-line.headline em {
+  font-style: italic;
+  color: var(--gold-light);
+  text-shadow:
+    0 2px 10px rgba(0,0,0,0.95),
+    0 4px 20px rgba(0,0,0,0.9),
+    0 0 40px rgba(201,168,76,0.2);
+}
+.reveal-line.sub {
+  top: calc(50% + clamp(48px, 7vw, 95px));
+  font-family: var(--sans);
+  font-size: clamp(9px, 1vw, 12px);
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.95), 0 4px 24px rgba(0,0,0,0.85);
+  transform: translateX(-50%);
+}
+.reveal-line.quote {
+  top: 50%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.8vw, 22px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.7;
+  max-width: 620px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 8px 40px rgba(0,0,0,0.8);
+  transform: translateX(-50%) translateY(-50%);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 28px 36px;
+  border-left: 1px solid rgba(201,168,76,0.3);
+  border-right: 1px solid rgba(201,168,76,0.1);
+}
+.reveal-line.gold-word {
+  top: 50%;
+  font-family: var(--serif);
+  font-size: clamp(50px, 8.5vw, 120px);
+  font-weight: 300;
+  color: transparent;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  -webkit-text-stroke: 1.2px rgba(232,201,122,0.85);
+  text-shadow: none;
+  transform: translateX(-50%) translateY(-50%);
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(201,168,76,0.3));
+}
+
+/* HUD corners */
+.hud-corner {
+  position: absolute;
+  z-index: 15;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.4);
+  font-family: var(--sans);
+}
+.hud-tl { top: 92px; left: 44px; }
+.hud-tr { top: 92px; right: 44px; text-align: right; }
+.hud-bl { bottom: 60px; left: 44px; }
+.hud-br { bottom: 60px; right: 44px; text-align: right; }
+
+/* Progress */
+.progress-wrap {
+  position: absolute;
+  bottom: 38px;
+  left: 44px;
+  right: 44px;
+  height: 1px;
+  background: rgba(201,168,76,0.08);
+  z-index: 15;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.35);
+  z-index: 15;
+  animation: bob 2.5s ease-in-out infinite;
+  transition: opacity 0.5s;
+}
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+@media (max-width: 768px) {
+  .hud-corner { font-size: 8px; }
+  .hud-tl, .hud-tr { top: 74px; }
+  .hud-tl, .hud-bl { left: 20px; }
+  .hud-tr, .hud-br { right: 20px; }
+  .progress-wrap { left: 20px; right: 20px; bottom: 32px; }
+}
+
+/* ═══════════════════════════════════════════
+   MARQUEE STRIP
+   ═══════════════════════════════════════════ */
+.marquee-strip {
+  border-top: 1px solid rgba(201,168,76,0.08);
+  border-bottom: 1px solid rgba(201,168,76,0.08);
+  padding: 16px 0;
+  overflow: hidden;
+  background: rgba(201,168,76,0.02);
+  position: relative;
+  z-index: 5;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.55);
+  padding: 0 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  white-space: nowrap;
+}
+.marquee-item::after {
+  content: '\25C7';
+  font-size: 7px;
+  color: rgba(201,168,76,0.3);
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════
+   PHILOSOPHY SECTION
+   ═══════════════════════════════════════════ */
+.philosophy {
+  padding: 140px 0;
+  background: var(--deep);
+  position: relative;
+  z-index: 5;
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.philosophy-intro {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 90px;
+}
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: block;
+}
+.philosophy-intro .phil-text {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-style: italic;
+  color: rgba(240,232,213,0.45);
+  line-height: 1.75;
+}
+
+/* Decorative line */
+.decorative-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 80px;
+  opacity: 0.5;
+}
+
+.philosophy-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.08);
+}
+.pillar {
+  background: var(--deep);
+  padding: 60px 44px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.6s, transform 0.6s;
+}
+.pillar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.pillar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06), transparent);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.pillar:hover { background: rgba(201,168,76,0.03); }
+.pillar:hover::before { transform: scaleX(1); }
+.pillar:hover::after { opacity: 1; }
+.pillar-number {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgba(201,168,76,0.2);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.pillar-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+.pillar-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(201,168,76,0.5);
+  line-height: 1.7;
+}
+@media (max-width: 768px) {
+  .philosophy-pillars { grid-template-columns: 1fr; }
+  .section-inner { padding: 0 24px; }
+  .philosophy { padding: 100px 0; }
+}
+
+/* ═══════════════════════════════════════════
+   COLLECTION SECTION
+   ═══════════════════════════════════════════ */
+.collection {
+  padding: 130px 0;
+  background: var(--black);
+  position: relative;
+  z-index: 5;
+}
+.col-header { margin-bottom: 64px; }
+.col-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5.5vw, 62px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+}
+.col-header .deck {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(201,168,76,0.45);
+  margin-top: 12px;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: rgba(201,168,76,0.04);
+}
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: #0a0907;
+  cursor: none;
+}
+.product-card-image {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+}
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.8s;
+  filter: brightness(0.85) saturate(1.05);
+}
+.product-card:hover .product-card-image img {
+  transform: scale(1.06);
+  filter: brightness(0.95) saturate(1.1);
+}
+.product-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 30%,
+    rgba(6,5,3,0.5) 60%,
+    rgba(6,5,3,0.95) 100%
+  );
+}
+.product-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 36px 32px;
+  z-index: 2;
+  transform: translateY(8px);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.product-card:hover .product-card-body { transform: translateY(0); }
+.card-type {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+}
+.card-name {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.5vw, 30px);
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+.card-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  margin-bottom: 18px;
+  max-width: 360px;
+}
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: gap 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s;
+}
+.card-link:hover { gap: 18px; color: var(--gold-light); }
+.card-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.4s;
+}
+.product-card:hover .card-link svg { transform: translateX(3px); }
+
+/* Corner accent on cards */
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  border-right: 1px solid rgba(201,168,76,0.15);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.product-card:hover::before { opacity: 1; }
+
+@media (max-width: 768px) {
+  .collection-grid { grid-template-columns: 1fr; }
+  .product-card-image { height: 320px; }
+  .collection { padding: 100px 0; }
+}
+
+/* ═══════════════════════════════════════════
+   SECOND CINEMATIC SECTION — CRAFT
+   ═══════════════════════════════════════════ */
+.craft-cinematic {
+  position: relative;
+  height: 400vh;
+  z-index: 5;
+}
+.craft-cinematic .sticky-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: var(--black);
+}
+.craft-image-container {
+  position: absolute;
+  inset: -60px;
+  overflow: hidden;
+}
+.craft-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.08) contrast(1.03) brightness(0.8);
+  will-change: transform, filter;
+  transform: scale(1.15);
+}
+
+/* ═══════════════════════════════════════════
+   CRAFTSMANSHIP TEXT SECTION
+   ═══════════════════════════════════════════ */
+.craft-text {
+  padding: 130px 0;
+  background: var(--deep);
+  position: relative;
+  z-index: 5;
+}
+.craft-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 40px;
+}
+.craft-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+.craft-text p {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(240,232,213,0.55);
+  line-height: 2;
+  margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════
+   STANDARDS SECTION
+   ═══════════════════════════════════════════ */
+.standards {
+  padding: 130px 0;
+  background: var(--black);
+  position: relative;
+  z-index: 5;
+}
+.standards h2 {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 72px;
+}
+.standards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.08);
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.standard-card {
+  background: var(--black);
+  padding: 56px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.5s;
+}
+.standard-card:hover { background: rgba(201,168,76,0.02); }
+.standard-numeral {
+  font-family: var(--serif);
+  font-size: 52px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.15);
+  display: block;
+  margin-bottom: 18px;
+  line-height: 1;
+}
+.standard-name {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.standard-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.45);
+  line-height: 1.8;
+}
+/* Divider line between numeral and name */
+.standard-card .divider {
+  width: 24px;
+  height: 1px;
+  background: rgba(201,168,76,0.2);
+  margin: 0 auto 18px;
+}
+@media (max-width: 768px) {
+  .standards-grid { grid-template-columns: 1fr; }
+  .standards { padding: 100px 0; }
+}
+
+/* ═══════════════════════════════════════════
+   ENQUIRY SECTION
+   ═══════════════════════════════════════════ */
+.enquiry {
+  padding: 150px 0;
+  background: var(--deep);
+  text-align: center;
+  border-top: 1px solid rgba(201,168,76,0.06);
+  position: relative;
+  z-index: 5;
+}
+.enquiry-inner {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.diamond {
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  margin: 0 auto 48px;
+  box-shadow: 0 0 30px rgba(201,168,76,0.3), 0 0 60px rgba(201,168,76,0.1);
+  animation: diamondPulse 3s ease-in-out infinite;
+}
+@keyframes diamondPulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(201,168,76,0.3), 0 0 60px rgba(201,168,76,0.1); }
+  50% { box-shadow: 0 0 40px rgba(201,168,76,0.45), 0 0 80px rgba(201,168,76,0.15); }
+}
+.enquiry h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5.5vw, 62px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.enquiry h2 span { color: var(--gold-light); }
+.enquiry p {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.45);
+  line-height: 1.9;
+  margin-bottom: 52px;
+}
+
+.btn-gold {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 16px 40px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.4s, letter-spacing 0.5s, box-shadow 0.4s, transform 0.2s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.8s;
+}
+.btn-gold:hover::after { transform: translateX(100%); }
+.btn-gold:hover {
+  background: var(--gold-light);
+  letter-spacing: 0.3em;
+  box-shadow: 0 4px 30px rgba(201,168,76,0.3);
+}
+.btn-gold:active { transform: scale(0.98); }
+
+.btn-ghost {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cream-dk);
+  border: 1px solid rgba(201,168,76,0.25);
+  padding: 16px 40px;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.4s, border-color 0.4s, background 0.4s;
+  cursor: none;
+  margin-left: 16px;
+}
+.btn-ghost:hover {
+  color: #fff;
+  border-color: rgba(201,168,76,0.6);
+  background: rgba(201,168,76,0.05);
+}
+.enquiry-note {
+  margin-top: 30px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.22);
+}
+
+@media (max-width: 768px) {
+  .btn-ghost { margin-left: 0; margin-top: 12px; }
+  .enquiry { padding: 110px 0; }
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+footer {
+  border-top: 1px solid rgba(201,168,76,0.08);
+  padding: 64px 56px 36px;
+  background: var(--black);
+  position: relative;
+  z-index: 5;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 56px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(201,168,76,0.05);
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.footer-tag {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(201,168,76,0.28);
+  line-height: 2;
+  font-weight: 300;
+}
+.footer-col-title {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.35);
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+.footer-links {
+  list-style: none;
+}
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(201,168,76,0.35);
+  text-decoration: none;
+  transition: color 0.4s;
+  position: relative;
+  display: inline-block;
+}
+.footer-links a:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(201,168,76,0.22);
+}
+.footer-copy {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.14);
+}
+@media (max-width: 768px) {
+  footer { padding: 40px 24px 28px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ═══════════════════════════════════════════
+   REVEAL ANIMATIONS
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-d1 { transition-delay: 0.12s; }
+.reveal-d2 { transition-delay: 0.24s; }
+.reveal-d3 { transition-delay: 0.36s; }
+.reveal-d4 { transition-delay: 0.48s; }
+
+/* Character reveal for headlines */
+.char-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.char-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════
+   MAGNETIC BUTTON EFFECT
+   ═══════════════════════════════════════════ */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ═══════════════════════════════════════════
+   GOLD SHIMMER TEXT EFFECT
+   ═══════════════════════════════════════════ */
+.shimmer-text {
+  background: linear-gradient(
+    105deg,
+    var(--cream) 0%,
+    var(--cream) 35%,
+    var(--gold-light) 45%,
+    var(--gold) 50%,
+    var(--gold-light) 55%,
+    var(--cream) 65%,
+    var(--cream) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 200% center; }
+  50% { background-position: -200% center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOADING SCREEN ═══ -->
+<div id="loader">
+  <div class="loader-logo">XII NOON</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-tag">Ultra-Luxury Timekeeping</div>
+</div>
+
+<!-- ═══ FILM GRAIN ═══ -->
+<div id="grain"><canvas id="grain-canvas"></canvas></div>
+
+<!-- ═══ GOLD PARTICLES ═══ -->
+<canvas id="particles"></canvas>
+
+<!-- ═══ CUSTOM CURSOR ═══ -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="cur-trail"></div>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <img src="XII-NOON-LOGO.webp" alt="XII NOON" width="28" height="28"/>
+    <span class="nav-logo-text">XII Noon</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#craft">Brand Story</a></li>
+    <li><a href="#enquiry">Private Enquiry</a></li>
+  </ul>
+  <a href="#enquiry" class="nav-cta magnetic">Private Enquiry</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO — CINEMATIC SECTION
+     ═══════════════════════════════════════════ -->
+<section class="hero-cinematic" id="s-hero">
+  <div class="sticky-wrap">
+    <div class="hero-image-container" id="hero-img-container">
+      <img src="Emirati-Watch-R1.webp" alt="XII NOON Emirati Edition" id="hero-img"/>
+    </div>
+    <div class="vignette"></div>
+    <div class="light-streak" id="light-streak"></div>
+
+    <div class="overlay-copy">
+      <div class="reveal-line headline" data-in="0.0" data-out="0.2">
+        XII <em>Noon</em>
+      </div>
+      <div class="reveal-line sub" data-in="0.05" data-out="0.22">
+        Ultra-Luxury Timekeeping &middot; Since the Beginning of Time
+      </div>
+      <div class="reveal-line quote" data-in="0.25" data-out="0.48">
+        &ldquo;Not a response to the world of luxury &mdash;<br/>India&rsquo;s assertion within it.&rdquo;
+      </div>
+      <div class="reveal-line gold-word" data-in="0.52" data-out="0.78">
+        Sovereign
+      </div>
+      <div class="reveal-line headline" data-in="0.78" data-out="1.0">
+        The <em>Emirati</em><br/>Edition
+      </div>
+    </div>
+
+    <div class="hud-corner hud-tl">
+      XII Noon<br/>
+      <span style="color:rgba(201,168,76,0.25);font-size:8px;letter-spacing:0.3em;">Make with India</span>
+    </div>
+    <div class="hud-corner hud-tr">
+      Ultra-Luxury Timekeeping<br/>
+      <span style="color:rgba(201,168,76,0.25);font-size:8px;letter-spacing:0.3em;">Frame 001</span>
+    </div>
+    <div class="hud-corner hud-bl" id="frame-readout-1">Frame 001 &middot; 130</div>
+    <div class="hud-corner hud-br">Scroll &#9662;</div>
+    <div class="progress-wrap"><div class="progress-fill" id="p1"></div></div>
+    <div class="scroll-hint" id="scroll-hint-1">Scroll &#9662;</div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Tricolor Edition</span>
+    <span class="marquee-item">Vajra Pen</span>
+    <span class="marquee-item">Make with India for the World</span>
+    <span class="marquee-item">Timekeeping as Legacy</span>
+    <span class="marquee-item">Emirati Edition</span>
+    <span class="marquee-item">Tricolor Edition</span>
+    <span class="marquee-item">Vajra Pen</span>
+    <span class="marquee-item">Make with India for the World</span>
+    <span class="marquee-item">Timekeeping as Legacy</span>
+    <span class="marquee-item">Emirati Edition</span>
+    <span class="marquee-item">Tricolor Edition</span>
+    <span class="marquee-item">Vajra Pen</span>
+    <span class="marquee-item">Make with India for the World</span>
+    <span class="marquee-item">Timekeeping as Legacy</span>
+    <span class="marquee-item">Emirati Edition</span>
+    <span class="marquee-item">Tricolor Edition</span>
+    <span class="marquee-item">Vajra Pen</span>
+    <span class="marquee-item">Make with India for the World</span>
+    <span class="marquee-item">Timekeeping as Legacy</span>
+    <span class="marquee-item">Emirati Edition</span>
+    <span class="marquee-item">Tricolor Edition</span>
+    <span class="marquee-item">Vajra Pen</span>
+    <span class="marquee-item">Make with India for the World</span>
+    <span class="marquee-item">Timekeeping as Legacy</span>
+    <span class="marquee-item">Emirati Edition</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PHILOSOPHY
+     ═══════════════════════════════════════════ -->
+<section class="philosophy" id="philosophy">
+  <div class="section-inner">
+    <div class="philosophy-intro reveal">
+      <span class="eyebrow">Philosophy</span>
+      <p class="phil-text">This is not timekeeping as function.</p>
+    </div>
+    <div class="decorative-line reveal reveal-d1"></div>
+    <div class="philosophy-pillars">
+      <div class="pillar reveal reveal-d1">
+        <div class="pillar-number">I</div>
+        <div class="pillar-title">Production</div>
+        <div class="pillar-sub">Is Restricted</div>
+      </div>
+      <div class="pillar reveal reveal-d2">
+        <div class="pillar-number">II</div>
+        <div class="pillar-title">Access</div>
+        <div class="pillar-sub">Is Controlled</div>
+      </div>
+      <div class="pillar reveal reveal-d3">
+        <div class="pillar-number">III</div>
+        <div class="pillar-title">Ownership</div>
+        <div class="pillar-sub">Extended, Never Offered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     COLLECTION
+     ═══════════════════════════════════════════ -->
+<section class="collection" id="collection">
+  <div class="section-inner">
+    <div class="col-header reveal">
+      <span class="eyebrow">Four Objects of Permanence</span>
+      <h2>The Collection</h2>
+      <p class="deck">Each conceived as an heirloom, not an acquisition</p>
+    </div>
+    <div class="collection-grid">
+      <div class="product-card reveal reveal-d1">
+        <div class="product-card-image">
+          <img src="bharat-watch-r2.webp" alt="The Tricolor Edition" loading="lazy"/>
+        </div>
+        <div class="product-card-body">
+          <span class="card-type">The Watch &middot; Limited</span>
+          <h3 class="card-name">The Tricolor Edition</h3>
+          <p class="card-desc">India's sovereignty, crystallised in horology. Saffron sapphires, white diamonds, green emeralds. The Ashoka Chakra rendered in platinum filigree.</p>
+          <a href="#" class="card-link">Discover <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-d2">
+        <div class="product-card-image">
+          <img src="Emirati-Watch-R1.webp" alt="Emirati Edition" loading="lazy"/>
+        </div>
+        <div class="product-card-body">
+          <span class="card-type">The Watch</span>
+          <h3 class="card-name">Emirati Edition</h3>
+          <p class="card-desc">A tribute to the union of two sovereign cultures. Full pav&eacute; diamond case, Arabic geometric motifs cast in 18K gold.</p>
+          <a href="#" class="card-link">Discover <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-d3">
+        <div class="product-card-image">
+          <img src="signature-watch-r1.webp" alt="Signature" loading="lazy"/>
+        </div>
+        <div class="product-card-body">
+          <span class="card-type">The Watch &middot; Feminine</span>
+          <h3 class="card-name">Signature</h3>
+          <p class="card-desc">Crafted for the woman who defines her own legacy. Emerald-cut diamonds, Colombian emerald inlay, sculpted feminine silhouette.</p>
+          <a href="#" class="card-link">Discover <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-d4">
+        <div class="product-card-image">
+          <img src="vajra-pen-r2.webp" alt="Vajra Pen" loading="lazy"/>
+        </div>
+        <div class="product-card-body">
+          <span class="card-type">The Writing Instrument</span>
+          <h3 class="card-name">Vajra Pen</h3>
+          <p class="card-desc">The thunderbolt of Indra, reimagined as an instrument of intent. 18K gold nib, hand-turned barrel, pav&eacute; diamond crown.</p>
+          <a href="#" class="card-link">Discover <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CRAFT — CINEMATIC SECTION
+     ═══════════════════════════════════════════ -->
+<section class="craft-cinematic" id="s-craft">
+  <div class="sticky-wrap">
+    <div class="craft-image-container" id="craft-img-container">
+      <img src="vajra-pen-r2.webp" alt="XII NOON Vajra Pen Craftsmanship" id="craft-img"/>
+    </div>
+    <div class="vignette"></div>
+    <div class="light-streak" id="light-streak-2"></div>
+
+    <div class="overlay-copy">
+      <div class="reveal-line headline" data-in="0.0" data-out="0.25" style="font-size:clamp(36px,6vw,90px);">
+        Seen, Never<br/><em>Rushed</em>
+      </div>
+      <div class="reveal-line sub" data-in="0.05" data-out="0.27">
+        The Craft
+      </div>
+      <div class="reveal-line quote" data-in="0.3" data-out="0.55">
+        &ldquo;Every dial tells a story older than the brand itself.<br/>XII NOON draws from the visual grammar of Bharat.&rdquo;
+      </div>
+      <div class="reveal-line gold-word" data-in="0.6" data-out="0.82" style="font-size:clamp(42px,7vw,100px);">
+        400 Hours
+      </div>
+      <div class="reveal-line headline" data-in="0.82" data-out="1.0">
+        The <em>Vajra</em><br/>Pen
+      </div>
+    </div>
+
+    <div class="hud-corner hud-tl">
+      The Craft<br/>
+      <span style="color:rgba(201,168,76,0.25);font-size:8px;letter-spacing:0.3em;">XII Noon &middot; Vajra Pen</span>
+    </div>
+    <div class="hud-corner hud-tr">
+      Frame 001 &middot; 110<br/>
+      <span style="color:rgba(201,168,76,0.25);font-size:8px;letter-spacing:0.3em;">No Two Are Identical</span>
+    </div>
+    <div class="hud-corner hud-bl" id="frame-readout-2">Frame 001 &middot; 110</div>
+    <div class="progress-wrap"><div class="progress-fill" id="p2"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CRAFTSMANSHIP TEXT
+     ═══════════════════════════════════════════ -->
+<section class="craft-text" id="craft">
+  <div class="craft-inner">
+    <div class="reveal">
+      <span class="eyebrow">Craftsmanship</span>
+      <h2>Every dial tells a story<br/>older than the brand itself.</h2>
+    </div>
+    <p class="reveal reveal-d1">XII NOON draws from the visual grammar of Bharat &mdash; architectural precision, legacy symbolism, ceremonial geometry &mdash; translated into horology with uncompromising exactitude.</p>
+    <p class="reveal reveal-d2">Each timepiece undergoes over 400 hours of handwork. No two are identical. Every stone is hand-set by a master lapidary.</p>
+    <a href="#enquiry" class="btn-ghost magnetic reveal reveal-d3" style="margin-top:32px;">Our Story</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHAT WE STAND FOR
+     ═══════════════════════════════════════════ -->
+<section class="standards">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="eyebrow">What We Stand For</span>
+      <h2>The XII Noon Standard</h2>
+    </div>
+    <div class="standards-grid">
+      <div class="standard-card reveal reveal-d1">
+        <span class="standard-numeral">I</span>
+        <div class="divider"></div>
+        <h3 class="standard-name">Sovereignty</h3>
+        <p class="standard-desc">Born in Bharat. Rooted in centuries of craft, symbolism, and ceremonial authority.</p>
+      </div>
+      <div class="standard-card reveal reveal-d2">
+        <span class="standard-numeral">II</span>
+        <div class="divider"></div>
+        <h3 class="standard-name">Scarcity</h3>
+        <p class="standard-desc">Production is intentionally restricted. Possession is never offered &mdash; it is extended.</p>
+      </div>
+      <div class="standard-card reveal reveal-d3">
+        <span class="standard-numeral">III</span>
+        <div class="divider"></div>
+        <h3 class="standard-name">Legacy</h3>
+        <p class="standard-desc">Every XII NOON creation is designed to be inherited, not merely owned. Permanence is the point.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRIVATE ENQUIRY
+     ═══════════════════════════════════════════ -->
+<section class="enquiry" id="enquiry">
+  <div class="enquiry-inner">
+    <div class="diamond reveal"></div>
+    <h2 class="reveal">Private<br/><span>Enquiry</span></h2>
+    <p class="reveal reveal-d1">Ownership of a XII Noon creation is not transacted &mdash; it is extended. Access to the collection is available exclusively through direct correspondence with the house.</p>
+    <div class="reveal reveal-d2">
+      <a href="mailto:ceo@xiinoon.in" class="btn-gold magnetic">Request Correspondence</a>
+      <a href="mailto:ceo@xiinoon.in" class="btn-ghost magnetic">Visit House</a>
+    </div>
+    <p class="enquiry-note reveal reveal-d3">ceo@xiinoon.in &middot; Responses within 48 hours</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand shimmer-text">Make with India for the World.<br/>Timekeeping as Position.<br/>Timekeeping as Legacy.</div>
+        <p class="footer-tag">XII Noon does not follow time.<br/>XII Noon defines it.</p>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Collection</h4>
+        <ul class="footer-links">
+          <li><a href="#">Emirati Edition</a></li>
+          <li><a href="#">Signature Watch</a></li>
+          <li><a href="#">The Tricolor</a></li>
+          <li><a href="#">Vajra Pen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">House</h4>
+        <ul class="footer-links">
+          <li><a href="#craft">Brand Story</a></li>
+          <li><a href="#enquiry">Private Enquiry</a></li>
+          <li><a href="mailto:ceo@xiinoon.in">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-quote">XII Noon does not follow time. XII Noon defines it.</p>
+      <p class="footer-copy">&copy; XII Noon. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT — CINEMATIC ENGINE
+     ═══════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── LOADER ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 2800);
+  });
+
+  /* ── ANIMATED FILM GRAIN ── */
+  const grainCanvas = document.getElementById('grain-canvas');
+  const grainCtx = grainCanvas.getContext('2d');
+  function resizeGrain() {
+    grainCanvas.width = 256;
+    grainCanvas.height = 256;
+  }
+  resizeGrain();
+  function renderGrain() {
+    const w = grainCanvas.width, h = grainCanvas.height;
+    const imgData = grainCtx.createImageData(w, h);
+    const d = imgData.data;
+    for (let i = 0; i < d.length; i += 4) {
+      const v = Math.random() * 255;
+      d[i] = d[i+1] = d[i+2] = v;
+      d[i+3] = 18;
+    }
+    grainCtx.putImageData(imgData, 0, 0);
+    requestAnimationFrame(renderGrain);
+  }
+  renderGrain();
+
+  /* ── GOLD PARTICLES ── */
+  const pCanvas = document.getElementById('particles');
+  const pCtx = pCanvas.getContext('2d');
+  let particles = [];
+  const PARTICLE_COUNT = 40;
+
+  function resizeParticles() {
+    pCanvas.width = window.innerWidth;
+    pCanvas.height = window.innerHeight;
+  }
+  resizeParticles();
+  window.addEventListener('resize', resizeParticles);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * pCanvas.width;
+      this.y = Math.random() * pCanvas.height;
+      this.size = Math.random() * 1.5 + 0.3;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.2 - 0.1;
+      this.opacity = Math.random() * 0.4 + 0.1;
+      this.life = Math.random() * 400 + 200;
+      this.maxLife = this.life;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.life--;
+      if (this.life <= 0 || this.x < -10 || this.x > pCanvas.width + 10 || this.y < -10 || this.y > pCanvas.height + 10) {
+        this.reset();
+      }
+    }
+    draw() {
+      const fade = Math.min(this.life / 60, 1, (this.maxLife - this.life) / 60);
+      pCtx.beginPath();
+      pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      pCtx.fillStyle = `rgba(201, 168, 76, ${this.opacity * fade})`;
+      pCtx.fill();
+    }
+  }
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  function animateParticles() {
+    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  /* ── CUSTOM CURSOR ── */
+  const cur = document.getElementById('cur');
+  const ring = document.getElementById('cur-ring');
+  const trail = document.getElementById('cur-trail');
+  let mx = -100, my = -100, rx = -100, ry = -100, tx = -100, ty = -100;
+  const trailPositions = [];
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function cursorLoop() {
+    rx += (mx - rx) * 0.08;
+    ry += (my - ry) * 0.08;
+    tx += (mx - tx) * 0.04;
+    ty += (my - ty) * 0.04;
+
+    cur.style.left = mx + 'px';
+    cur.style.top = my + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    trail.style.left = tx + 'px';
+    trail.style.top = ty + 'px';
+
+    requestAnimationFrame(cursorLoop);
+  }
+  cursorLoop();
+
+  // Hover effects on interactive elements
+  document.querySelectorAll('a, button, .product-card, .pillar, .standard-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cur.style.width = '12px';
+      cur.style.height = '12px';
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+      ring.style.opacity = '0.6';
+      ring.style.borderColor = 'rgba(201,168,76,0.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cur.style.width = '6px';
+      cur.style.height = '6px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '0.35';
+      ring.style.borderColor = 'rgba(201,168,76,0.35)';
+    });
+  });
+
+  /* ── MAGNETIC BUTTONS ── */
+  document.querySelectorAll('.magnetic').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) * 0.2;
+      const dy = (e.clientY - cy) * 0.2;
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'translate(0, 0)';
+    });
+  });
+
+  /* ── SMOOTH SCROLL ENGINE ── */
+  let scrollTarget = window.scrollY;
+  let scrollCurrent = window.scrollY;
+  const SCROLL_LERP = 0.08;
+
+  window.addEventListener('scroll', () => { scrollTarget = window.scrollY; }, { passive: true });
+
+  function smoothScrollLoop() {
+    scrollCurrent += (scrollTarget - scrollCurrent) * SCROLL_LERP;
+    if (Math.abs(scrollTarget - scrollCurrent) < 0.5) scrollCurrent = scrollTarget;
+    requestAnimationFrame(smoothScrollLoop);
+  }
+  smoothScrollLoop();
+
+  /* ── NAV SCROLL STATE ── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* ── SCROLL HINT FADE ── */
+  const scrollHint = document.getElementById('scroll-hint-1');
+
+  /* ── CINEMATIC SECTION SCRUB ── */
+  function initCinematicSection(sectionId, imgContainerId, imgId, progressId, readoutId, frameCount, streakId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return null;
+    const imgContainer = document.getElementById(imgContainerId);
+    const img = document.getElementById(imgId);
+    const progressEl = document.getElementById(progressId);
+    const readoutEl = document.getElementById(readoutId);
+    const streak = document.getElementById(streakId);
+    const lines = [...section.querySelectorAll('.reveal-line')];
+
+    function update() {
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight) return;
+
+      const scrollable = rect.height - window.innerHeight;
+      const p = Math.min(Math.max(-rect.top / scrollable, 0), 1);
+      const frame = Math.min(frameCount - 1, Math.floor(p * (frameCount - 1)));
+
+      // Ken Burns effect on image
+      const scale = 1 + p * 0.15;
+      const brightness = 0.85 - p * 0.1;
+      const xShift = Math.sin(p * Math.PI) * 2;
+      const yShift = p * -8;
+      if (img) {
+        img.style.transform = `scale(${scale}) translate(${xShift}px, ${yShift}px)`;
+        img.style.filter = `saturate(1.05) contrast(1.02) brightness(${brightness})`;
+      }
+
+      // Progress bar
+      if (progressEl) progressEl.style.width = (p * 100) + '%';
+
+      // Frame readout
+      if (readoutEl) {
+        readoutEl.textContent = 'Frame ' + String(frame + 1).padStart(3, '0') + ' \u00B7 ' + frameCount;
+      }
+
+      // Light streak
+      if (streak) {
+        const streakP = (p - 0.15) / 0.7;
+        if (streakP > 0 && streakP < 1) {
+          streak.style.opacity = Math.sin(streakP * Math.PI) * 0.8;
+          streak.style.left = (streakP * 160 - 30) + '%';
+        } else {
+          streak.style.opacity = 0;
+        }
+      }
+
+      // Text reveal lines — trapezoid fade
+      for (const el of lines) {
+        const a = parseFloat(el.dataset.in);
+        const b = parseFloat(el.dataset.out);
+        const span = b - a;
+        const fadeFrac = 0.18;
+        const fadeIn = a + span * fadeFrac;
+        const fadeOut = b - span * fadeFrac;
+        let o;
+        if (p < a || p > b) o = 0;
+        else if (p < fadeIn) o = (p - a) / (fadeIn - a);
+        else if (p > fadeOut) o = (b - p) / (b - fadeOut);
+        else o = 1;
+        o = Math.max(0, Math.min(1, o));
+        el.style.opacity = o.toFixed(3);
+
+        const isCentered = el.classList.contains('headline') || el.classList.contains('gold-word') || el.classList.contains('quote');
+        const drift = (1 - o) * 24;
+        el.style.transition = 'opacity 0.12s ease, transform 0.12s ease';
+        el.style.transform = isCentered
+          ? `translateX(-50%) translateY(calc(-50% + ${drift}px))`
+          : `translateX(-50%) translateY(${drift}px)`;
+      }
+    }
+
+    return { update };
+  }
+
+  const s1 = initCinematicSection('s-hero', 'hero-img-container', 'hero-img', 'p1', 'frame-readout-1', 130, 'light-streak');
+  const s2 = initCinematicSection('s-craft', 'craft-img-container', 'craft-img', 'p2', 'frame-readout-2', 110, 'light-streak-2');
+
+  /* ── MAIN ANIMATION LOOP ── */
+  function mainLoop() {
+    smoothScrollLoop();
+    if (s1) s1.update();
+    if (s2) s2.update();
+    if (scrollHint) scrollHint.style.opacity = window.scrollY > 100 ? '0' : '1';
+    requestAnimationFrame(mainLoop);
+  }
+  requestAnimationFrame(mainLoop);
+
+  /* ── INTERSECTION OBSERVER — REVEAL ANIMATIONS ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── PRODUCT CARD PARALLAX ── */
+  document.querySelectorAll('.product-card').forEach(card => {
+    const img = card.querySelector('.product-card-image img');
+    if (!img) return;
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      img.style.transform = `scale(1.06) translate(${x * -8}px, ${y * -8}px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      img.style.transform = '';
+    });
+  });
+
+  /* ── SMOOTH ANCHOR SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
