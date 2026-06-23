@@ -46,10 +46,12 @@ export function Navbar() {
             className="group flex items-center gap-3"
             aria-label="XII NOON home"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(201,168,76,0.5)] text-[#c9a84c]">
-              <span className="font-serif-display text-lg leading-none">X</span>
-            </span>
-            <span className="flex flex-col leading-none">
+            <img
+              src="/images/logo.webp"
+              alt="XII NOON"
+              className="h-9 w-auto object-contain transition-opacity duration-500 group-hover:opacity-80"
+            />
+            <span className="hidden flex-col leading-none sm:flex">
               <span className="font-serif-display text-xl tracking-[0.3em] text-[#f0e8d5]">
                 XII NOON
               </span>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { useReveal } from "./use-reveal";
+import { Reveal } from "./reveal";
 
 type Product = {
   id: string;
@@ -31,11 +31,11 @@ const PRODUCTS: Product[] = [
     tag: "Limited",
     blurb:
       "India's sovereignty, crystallised in horology. Saffron sapphires, white diamonds, green emeralds. The Ashoka Chakra rendered in platinum filigree.",
-    image: "/images/tricolor.png",
+    image: "/images/tricolor.webp",
     accent: "#e8a23a",
     details: {
       movement: "Manual-wind tourbillon, 72h reserve",
-      case: "950 Platinum, 39mm",
+      caseMaterial: "950 Platinum, 39mm",
       dial: "Ashoka Chakra in platinum filigree",
       stones: "Saffron sapphires · White diamonds · Colombian emeralds",
       edition: "Limited to 12 numbered pieces",
@@ -51,11 +51,11 @@ const PRODUCTS: Product[] = [
     tag: "Signature",
     blurb:
       "A tribute to the union of two sovereign cultures. Full pavé diamond case, Arabic geometric motifs cast in 18K gold.",
-    image: "/images/emirati.png",
+    image: "/images/emirati.webp",
     accent: "#e8c97a",
     details: {
       movement: "Automatic, 65h reserve",
-      case: "18K gold, full pavé diamond, 40mm",
+      caseMaterial: "18K gold, full pavé diamond, 40mm",
       dial: "Arabic eight-point star geometric motif",
       stones: "Brilliant-cut diamonds, full pavé",
       edition: "By private allocation",
@@ -71,11 +71,11 @@ const PRODUCTS: Product[] = [
     tag: "Feminine",
     blurb:
       "Crafted for the woman who defines her own legacy. Emerald-cut diamonds, Colombian emerald inlay, sculpted feminine silhouette.",
-    image: "/images/signature.png",
+    image: "/images/signature.webp",
     accent: "#9fb88a",
     details: {
       movement: "High-precision quartz, jeweled",
-      case: "18K rose gold, sculpted, 34mm",
+      caseMaterial: "18K rose gold, sculpted, 34mm",
       dial: "Colombian emerald inlay, mother-of-pearl",
       stones: "Emerald-cut diamonds, Colombian emerald",
       edition: "Extended by invitation",
@@ -91,11 +91,11 @@ const PRODUCTS: Product[] = [
     tag: "Object",
     blurb:
       "The thunderbolt of Indra, reimagined as an instrument of intent. 18K gold nib, hand-turned barrel, pavé diamond crown.",
-    image: "/images/vajra.png",
+    image: "/images/vajra.webp",
     accent: "#c9a84c",
     details: {
       movement: "Cartridge / converter filling",
-      case: "Hand-turned ebonite & 18K gold barrel",
+      caseMaterial: "Hand-turned ebonite & 18K gold barrel",
       dial: "Vajra thunderbolt motif, hand-engraved",
       stones: "Pavé diamond crown",
       edition: "Numbered series, by allocation",
@@ -115,26 +115,18 @@ function ProductCard({
   index: number;
   onOpen: () => void;
 }) {
-  const r = useReveal<HTMLDivElement>();
-  const isWide = index % 2 === 0;
   return (
-    <div
-      ref={r.ref}
-      className={`reveal reveal-d${(index % 2) + 1} ${r.visible ? "is-visible" : ""}`}
-    >
-      <article className="collection-card group flex flex-col">
-        {/* Image */}
+    <Reveal delay={((index % 2) + 1) as 1 | 2}>
+      <article className="collection-card group flex h-full flex-col">
         <div className="card-img-wrap relative aspect-[4/5] overflow-hidden">
           <div
             className="card-img absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url('${product.image}')` }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080704] via-transparent to-transparent" />
-          {/* tag */}
           <span className="absolute left-5 top-5 border border-[rgba(201,168,76,0.5)] bg-[#080704]/60 px-3 py-1 text-[9px] uppercase tracking-[0.3em] text-[#e8c97a] backdrop-blur-sm">
             {product.tag}
           </span>
-          {/* quick view */}
           <button
             onClick={onOpen}
             className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border border-[#c9a84c]/60 bg-[#080704]/60 text-[#e8c97a] opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:opacity-100 hover:bg-[#c9a84c] hover:text-[#080704]"
@@ -142,13 +134,11 @@ function ProductCard({
           >
             <Plus className="h-5 w-5" />
           </button>
-          {/* category */}
           <span className="absolute bottom-5 left-5 text-[10px] uppercase tracking-[0.3em] text-[#c8b98a]">
             {product.category}
           </span>
         </div>
 
-        {/* Body */}
         <div className="flex flex-1 flex-col p-7">
           <h3 className="font-serif-display text-3xl leading-tight text-[#f0e8d5]">
             {product.name}
@@ -162,14 +152,14 @@ function ProductCard({
           </p>
           <button
             onClick={onOpen}
-            className="mt-6 inline-flex items-center gap-2 self-start text-[11px] uppercase tracking-[0.32em] text-[#e8c97a] transition-colors hover:text-[#f0e8d5]"
+            className="group/btn mt-6 inline-flex items-center gap-2 self-start text-[11px] uppercase tracking-[0.32em] text-[#e8c97a] transition-colors hover:text-[#f0e8d5]"
           >
             Discover
-            <span className="inline-block h-px w-6 bg-current transition-all duration-500 group-hover:w-10" />
+            <span className="inline-block h-px w-6 bg-current transition-all duration-500 group-hover/btn:w-10" />
           </button>
         </div>
       </article>
-    </div>
+    </Reveal>
   );
 }
 
@@ -198,7 +188,6 @@ function ProductDialog({
       >
         {product && (
           <div className="grid md:grid-cols-2">
-            {/* Image */}
             <div className="relative aspect-square md:aspect-auto md:min-h-[560px]">
               <div
                 className="absolute inset-0 bg-cover bg-center"
@@ -210,7 +199,6 @@ function ProductDialog({
               </span>
             </div>
 
-            {/* Details */}
             <div className="relative p-8 sm:p-10">
               <button
                 onClick={onClose}
@@ -265,7 +253,6 @@ function ProductDialog({
 }
 
 export function Collection() {
-  const head = useReveal<HTMLDivElement>();
   const [active, setActive] = useState<Product | null>(null);
 
   return (
@@ -274,10 +261,7 @@ export function Collection() {
       className="relative bg-[#0a0905] py-24 sm:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-[1500px] px-5 sm:px-8">
-        <div
-          ref={head.ref}
-          className={`reveal ${head.visible ? "is-visible" : ""} mx-auto mb-16 max-w-3xl text-center sm:mb-20`}
-        >
+        <Reveal className="mx-auto mb-16 max-w-3xl text-center sm:mb-20">
           <p className="text-[11px] uppercase tracking-[0.45em] text-[#c9a84c]">
             Four Objects of Permanence
           </p>
@@ -287,7 +271,7 @@ export function Collection() {
           <p className="mt-6 text-base font-light text-[#c8b98a]">
             Each conceived as an heirloom, not an acquisition.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           {PRODUCTS.map((p, i) => (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useReveal } from "./use-reveal";
+import { Reveal } from "./reveal";
 
 function useCountUp(target: number, run: boolean, duration = 2000) {
   const [value, setValue] = useState(0);
@@ -55,12 +55,11 @@ function StatBlock({
   run: boolean;
   index: number;
 }) {
-  const r = useReveal<HTMLDivElement>();
   const v = useCountUp(stat.value, run);
   return (
-    <div
-      ref={r.ref}
-      className={`reveal reveal-d${(index % 4) + 1} ${r.visible ? "is-visible" : ""} relative border-t border-[rgba(201,168,76,0.18)] py-8`}
+    <Reveal
+      delay={((index % 4) + 1) as 1 | 2 | 3 | 4}
+      className="relative border-t border-[rgba(201,168,76,0.18)] py-8"
     >
       <div className="flex items-baseline gap-1">
         <span className="font-serif-display text-5xl sm:text-6xl text-gold-gradient">
@@ -73,32 +72,11 @@ function StatBlock({
       <p className="mt-3 text-xs uppercase tracking-[0.22em] text-[#c8b98a]">
         {stat.label}
       </p>
-    </div>
-  );
-}
-
-function StepCard({ step, index }: { step: (typeof STEPS)[number]; index: number }) {
-  const r = useReveal<HTMLDivElement>();
-  return (
-    <div
-      ref={r.ref}
-      className={`reveal reveal-d${index + 1} ${r.visible ? "is-visible" : ""} bg-[#0a0905] p-9 sm:p-11`}
-    >
-      <span className="font-serif-display text-5xl italic text-[#c9a84c]/40">
-        {step.n}
-      </span>
-      <h3 className="mt-5 font-serif-display text-2xl text-[#f0e8d5]">
-        {step.t}
-      </h3>
-      <p className="mt-4 text-sm font-light leading-relaxed text-[#c8b98a]">
-        {step.d}
-      </p>
-    </div>
+    </Reveal>
   );
 }
 
 export function Craft() {
-  const head = useReveal<HTMLDivElement>();
   const statsRef = useRef<HTMLDivElement | null>(null);
   const [statsRun, setStatsRun] = useState(false);
 
@@ -127,7 +105,7 @@ export function Craft() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/atelier.png')",
+            backgroundImage: "url('/images/atelier.webp')",
             filter: "brightness(0.4) grayscale(0.2)",
           }}
         />
@@ -135,17 +113,14 @@ export function Craft() {
       </div>
 
       <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div
-          ref={head.ref}
-          className={`reveal ${head.visible ? "is-visible" : ""} mx-auto max-w-3xl text-center`}
-        >
+        <Reveal className="mx-auto max-w-3xl text-center">
           <p className="text-[11px] uppercase tracking-[0.45em] text-[#c9a84c]">
             The Craft
           </p>
           <h2 className="mt-6 font-serif-display text-4xl sm:text-5xl lg:text-6xl leading-tight text-[#f0e8d5]">
             Seen, Never Rushed.
           </h2>
-        </div>
+        </Reveal>
 
         <div className="mx-auto mt-14 grid max-w-4xl gap-10 text-center md:grid-cols-2 md:text-left">
           <p className="font-serif-display text-2xl italic leading-relaxed text-[#f0e8d5]/90">
@@ -171,7 +146,21 @@ export function Craft() {
 
         <div className="mt-24 grid gap-px overflow-hidden border border-[rgba(201,168,76,0.16)] bg-[rgba(201,168,76,0.16)] md:grid-cols-3">
           {STEPS.map((step, i) => (
-            <StepCard key={step.n} step={step} index={i} />
+            <Reveal
+              key={step.n}
+              delay={((i + 1) as 1 | 2 | 3)}
+              className="bg-[#0a0905] p-9 sm:p-11"
+            >
+              <span className="font-serif-display text-5xl italic text-[#c9a84c]/40">
+                {step.n}
+              </span>
+              <h3 className="mt-5 font-serif-display text-2xl text-[#f0e8d5]">
+                {step.t}
+              </h3>
+              <p className="mt-4 text-sm font-light leading-relaxed text-[#c8b98a]">
+                {step.d}
+              </p>
+            </Reveal>
           ))}
         </div>
       </div>

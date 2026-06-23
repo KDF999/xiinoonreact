@@ -75,11 +75,11 @@ export function Footer() {
           {/* Brand + newsletter */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(201,168,76,0.5)] text-[#c9a84c]">
-                <span className="font-serif-display text-xl leading-none">
-                  X
-                </span>
-              </span>
+              <img
+                src="/images/logo.webp"
+                alt="XII NOON"
+                className="h-11 w-auto object-contain"
+              />
               <div className="leading-none">
                 <p className="font-serif-display text-2xl tracking-[0.3em] text-[#f0e8d5]">
                   XII NOON

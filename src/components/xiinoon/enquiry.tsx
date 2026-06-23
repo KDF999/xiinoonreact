@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Loader2, Send, Check } from "lucide-react";
-import { useReveal } from "./use-reveal";
+import { Reveal } from "./reveal";
 import { useToast } from "@/hooks/use-toast";
 
 const INTERESTS = [
@@ -15,7 +15,6 @@ const INTERESTS = [
 ];
 
 export function Enquiry() {
-  const head = useReveal<HTMLDivElement>();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -79,12 +78,10 @@ export function Enquiry() {
       id="enquiry"
       className="relative overflow-hidden bg-[#080704] py-24 sm:py-32 lg:py-40"
     >
-      {/* glow */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-[60vh] w-[60vh] -translate-x-1/2 rounded-full bg-[#c9a84c]/8 blur-[120px]" />
 
       <div className="relative mx-auto grid max-w-[1400px] gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
-        {/* Left — invitation copy */}
-        <div ref={head.ref} className={`reveal ${head.visible ? "is-visible" : ""}`}>
+        <Reveal>
           <p className="text-[11px] uppercase tracking-[0.45em] text-[#c9a84c]">
             Private Enquiry
           </p>
@@ -129,9 +126,8 @@ export function Enquiry() {
               </span>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Right — form */}
         <div className="glass-panel p-7 sm:p-10">
           {done ? (
             <div className="flex h-full min-h-[420px] flex-col items-center justify-center text-center">
