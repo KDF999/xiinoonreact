@@ -1,20 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { label: "Emirati", href: "#collection" },
-  { label: "Signature", href: "#collection" },
-  { label: "Vajra Pen", href: "#collection" },
-  { label: "Brand Story", href: "#craft" },
-  { label: "Media", href: "#standards" },
-  { label: "Private Enquiry", href: "#enquiry" },
+  { label: "Emirati", href: "/emirati-edition" },
+  { label: "Signature", href: "/signature" },
+  { label: "Vajra Pen", href: "/vajra-pen" },
+  { label: "Brand Story", href: "/brand-story" },
+  { label: "Media", href: "/media" },
+  { label: "Private Enquiry", href: "/private-enquiry" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -30,6 +33,11 @@ export function Navbar() {
     };
   }, [open]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <>
       <header
@@ -41,8 +49,8 @@ export function Navbar() {
       >
         <nav className="mx-auto flex max-w-[1500px] items-center justify-between px-5 sm:px-8">
           {/* Logo */}
-          <a
-            href="#top"
+          <Link
+            href="/"
             className="group flex items-center gap-3"
             aria-label="XII NOON home"
           >
@@ -59,29 +67,34 @@ export function Navbar() {
                 Ultra-Luxury Timekeeping
               </span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <ul className="hidden items-center gap-7 lg:flex">
-            {LINKS.map((l) => (
-              <li key={l.label}>
-                <a
-                  href={l.href}
-                  className="gold-underline text-[11px] uppercase tracking-[0.28em] text-[#c8b98a] transition-colors hover:text-[#e8c97a]"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
+            {LINKS.map((l) => {
+              const active = pathname === l.href;
+              return (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    className={`gold-underline text-[11px] uppercase tracking-[0.28em] transition-colors hover:text-[#e8c97a] ${
+                      active ? "text-[#e8c97a]" : "text-[#c8b98a]"
+                    }`}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* CTA */}
-          <a
-            href="#enquiry"
+          <Link
+            href="/private-enquiry"
             className="hidden lg:inline-flex items-center justify-center border border-[#c9a84c]/60 px-6 py-2.5 text-[10px] uppercase tracking-[0.32em] text-[#e8c97a] transition-all duration-500 hover:bg-[#c9a84c] hover:text-[#080704]"
           >
             Private Enquiry
-          </a>
+          </Link>
 
           {/* Mobile toggle */}
           <button
@@ -123,29 +136,32 @@ export function Navbar() {
           </div>
           <div className="my-7 gold-rule" />
           <ul className="flex flex-col gap-6">
-            {LINKS.map((l, i) => (
-              <li key={l.label}>
-                <a
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="block font-serif-display text-3xl text-[#f0e8d5] transition-colors hover:text-[#e8c97a]"
-                >
-                  <span className="mr-3 text-xs align-top text-[#c9a84c]/60">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {l.label}
-                </a>
-              </li>
-            ))}
+            {LINKS.map((l, i) => {
+              const active = pathname === l.href;
+              return (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    className={`block font-serif-display text-3xl transition-colors ${
+                      active ? "text-[#e8c97a]" : "text-[#f0e8d5] hover:text-[#e8c97a]"
+                    }`}
+                  >
+                    <span className="mr-3 text-xs align-top text-[#c9a84c]/60">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <div className="my-8 gold-rule" />
-          <a
-            href="#enquiry"
-            onClick={() => setOpen(false)}
+          <Link
+            href="/private-enquiry"
             className="inline-flex w-full items-center justify-center border border-[#c9a84c]/60 px-6 py-3.5 text-[11px] uppercase tracking-[0.3em] text-[#e8c97a] transition-colors hover:bg-[#c9a84c] hover:text-[#080704]"
           >
             Private Enquiry
-          </a>
+          </Link>
           <p className="mt-10 text-[10px] tracking-[0.3em] uppercase text-[#c8b98a]/60">
             Make with India · For the World
           </p>
