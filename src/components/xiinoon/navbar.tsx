@@ -48,13 +48,13 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="group flex items-center gap-3"
+            className="group flex min-w-0 items-center gap-3"
             aria-label="XII NOON home"
           >
             <img
               src="/images/logo.webp"
               alt="XII NOON"
-              className="h-9 w-auto object-contain transition-opacity duration-500 group-hover:opacity-80"
+              className="h-9 max-w-[44vw] w-auto shrink-0 object-contain transition-opacity duration-500 group-hover:opacity-80 sm:max-w-none"
             />
             <span className="hidden flex-col leading-none sm:flex">
               <span className="font-serif-display text-xl tracking-[0.3em] text-[#f0e8d5]">
@@ -96,7 +96,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setOpen(true)}
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center text-[#e8c97a]"
+            className="lg:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center text-[#e8c97a]"
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />

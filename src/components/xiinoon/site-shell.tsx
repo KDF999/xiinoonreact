@@ -9,7 +9,7 @@ import { Footer } from "./footer";
  */
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex min-h-screen flex-col bg-[#080704]">
+    <div className="relative flex min-h-screen flex-col overflow-x-clip bg-[#080704]">
       <div className="grain-overlay" aria-hidden />
       <CustomCursor />
       <ScrollProgress />
