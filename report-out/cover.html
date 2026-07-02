@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#080704; --deep:#0e0c08; --gold:#c9a84c; --gold-light:#e8c97a;
+    --cream:#f0e8d5; --cream-dk:#c8b98a;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  @page{margin:0;}
+  html,body{margin:0;padding:0;background:var(--black);width:210mm;}
+  .poster{
+    position:relative;width:210mm;height:297mm;background:var(--black);
+    color:var(--cream);font-family:var(--sans);font-weight:300;overflow:hidden;
+  }
+  /* grain */
+  .grain{position:absolute;inset:0;opacity:.05;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* corner frames */
+  .frame-outer{position:absolute;inset:40px;border:1px solid rgba(201,168,76,.22);}
+  .frame-inner{position:absolute;inset:52px;border:1px solid rgba(201,168,76,.1);}
+  /* gold radial glow */
+  .glow{position:absolute;left:50%;top:42%;width:520px;height:520px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(201,168,76,.14),transparent 65%);pointer-events:none;}
+  /* logo mark */
+  .mark{position:absolute;top:96px;left:0;right:0;text-align:center;}
+  .mark .diamond{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;
+    border:1px solid rgba(201,168,76,.5);border-radius:50%;}
+  .mark .diamond span{font-family:var(--serif);font-size:28px;color:var(--gold);}
+  /* eyebrow */
+  .eyebrow{position:absolute;top:188px;left:0;right:0;text-align:center;
+    font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--cream-dk);}
+  .eyebrow .dash{display:inline-block;width:34px;height:1px;background:var(--gold);vertical-align:middle;margin:0 14px;}
+  /* title block */
+  .title-block{position:absolute;top:300px;left:0;right:0;text-align:center;}
+  .title-block h1{font-family:var(--serif);font-weight:300;font-size:78px;line-height:1;color:var(--cream);letter-spacing:.04em;}
+  .title-block h1 .gold{background:linear-gradient(120deg,#8a7330,#e8c97a 40%,#c9a84c 70%,#8a7330);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;}
+  .title-block .sub{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:30px;color:var(--cream-dk);letter-spacing:.04em;}
+  /* gold rule */
+  .rule{position:absolute;top:520px;left:50%;transform:translateX(-50%);width:120px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+  /* document type */
+  .doctype{position:absolute;top:560px;left:0;right:0;text-align:center;
+    font-size:13px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-light);}
+  /* summary box */
+  .summary{position:absolute;top:640px;left:120px;right:120px;text-align:center;
+    font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.7;color:rgba(240,232,213,.85);}
+  /* meta grid */
+  .meta{position:absolute;top:860px;left:120px;right:120px;display:flex;justify-content:space-between;
+    border-top:1px solid rgba(201,168,76,.18);border-bottom:1px solid rgba(201,168,76,.18);padding:26px 0;}
+  .meta .col{text-align:center;flex:1;}
+  .meta .col .k{font-size:8.5px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .meta .col .v{font-family:var(--serif);font-size:18px;color:var(--cream);}
+  /* footer */
+  .footer{position:absolute;bottom:90px;left:0;right:0;text-align:center;}
+  .footer .brand{font-family:var(--serif);font-size:22px;letter-spacing:.3em;color:var(--cream);}
+  .footer .tag{margin-top:10px;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--cream-dk);opacity:.7;}
+  /* seal */
+  .seal{position:absolute;bottom:90px;right:60px;width:70px;height:70px;}
+  .seal svg{width:100%;height:100%;animation:spin 30s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="grain"></div>
+  <div class="glow"></div>
+  <div class="frame-outer"></div>
+  <div class="frame-inner"></div>
+
+  <div class="mark">
+    <div class="diamond"><span>X</span></div>
+  </div>
+
+  <div class="eyebrow">
+    <span class="dash"></span>Project Report<span class="dash"></span>
+  </div>
+
+  <div class="title-block">
+    <h1><span class="gold">XII</span> NOON</h1>
+    <div class="sub">Ultra-Luxury Timekeeping</div>
+  </div>
+
+  <div class="rule"></div>
+  <div class="doctype">Website &amp; Digital Experience</div>
+
+  <div class="summary">
+    A comprehensive overview of the XII NOON digital presence —<br>
+    a multi-page cinematic website built to convey sovereignty,<br>
+    scarcity, and permanence for India&rsquo;s assertion in ultra-luxury.
+  </div>
+
+  <div class="meta">
+    <div class="col"><div class="k">Prepared For</div><div class="v">XII NOON Maison</div></div>
+    <div class="col"><div class="k">Document</div><div class="v">Project Report</div></div>
+    <div class="col"><div class="k">Edition</div><div class="v">MMXXV</div></div>
+  </div>
+
+  <div class="footer">
+    <div class="brand">XII NOON</div>
+    <div class="tag">Make with India &middot; For the World</div>
+  </div>
+
+  <div class="seal">
+    <svg viewBox="0 0 100 100">
+      <defs><path id="sp" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/></defs>
+      <text fill="rgba(201,168,76,.7)" font-size="7" letter-spacing="2" font-family="Jost,sans-serif">
+        <textPath href="#sp">· XII NOON · ULTRA-LUXURY · SINCE THE BEGINNING OF TIME · </textPath>
+      </text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>
